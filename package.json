@@ -1,0 +1,19 @@
+{
+  "name": "teachers-little-helper",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^16.2.0",
+    "react-app-env": "^1.2.0",
+    "react-dom": "^16.2.0",
+    "react-scripts": "1.1.1",
+    "semantic-ui-react": "^0.78.2",
+    "slack": "^10.1.1"
+  },
+  "scripts": {
+    "start": "react-app-env start",
+    "build": "react-app-env build",
+    "test": "react-app-env test --env=jsdom",
+    "eject": "react-app-env eject"
+  }
+}
