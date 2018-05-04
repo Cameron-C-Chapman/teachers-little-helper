@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button } from 'semantic-ui-react';
+import { Button, Icon, Dropdown } from 'semantic-ui-react';
 import './App.css';
 
 import ChosenUser from './ChosenUser';
@@ -12,6 +12,7 @@ class App extends Component {
     super(props);
     this.state = {
       users: [],
+      channels: [],
       chosenUser: {}
     }
   }
@@ -21,6 +22,20 @@ class App extends Component {
       this.setState({users: response.members.filter((user) => {
         return (user.is_bot === false && user.deleted === false);
       })});
+    });
+
+    slackInstance.getChannels().then((response) => {
+      let channels = [];
+      response.channels.map((channel) => {
+        let newChannel = {
+          key: channel.id,
+          value: channel.id,
+          text: channel.name
+        }
+        channels.push(newChannel);
+      });
+      this.setState({channels: channels});
+      console.log(channels);
     });
   }
 
@@ -32,11 +47,16 @@ class App extends Component {
   render() {
     return (
       <div className="App ui grid">
-        <div className="one column row">
+        <div className="two column row">
           <div className="column">
             <div className="ui segment">
-              <Button color="blue" onClick={this.chooseNewUser}>Feeling Lucky</Button>
+              <Button color="blue" onClick={this.chooseNewUser}>Feeling Lucky &nbsp; <Icon name='wizard'></Icon></Button>
               <ChosenUser user={this.state.chosenUser}></ChosenUser>
+            </div>  
+          </div>
+          <div className="column">
+            <div className="ui segment">
+              <Dropdown placeholder='Channels' fluid multiple selection options={this.state.channels} />
             </div>  
           </div>
         </div>
