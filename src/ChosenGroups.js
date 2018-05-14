@@ -26,18 +26,22 @@ class ChosenGroups extends Component {
                     group.push(groupMember);
                 }
                let cardGroup =
-               
-                    <Card.Group itemsPerRow={this.state.groupSize}>
+            //    <div className='column'>
+                    <Card.Group >
                         <Card>
                             <Card.Content>
                                 <Card.Header>
                                 Group {i+1}
                                 </Card.Header>
-                                {group}
+                                <Card.Group >
+                                    <Card color='violet' centered raised>
+                                        {group}
+                                    </Card>
+                                </Card.Group>
                             </Card.Content>
                         </Card>
                     </Card.Group>
-                
+                // </div>
                 cards.push(cardGroup)
             }
         }
@@ -47,9 +51,7 @@ class ChosenGroups extends Component {
     render(props) {
         if (this.props.groups) {
             return(
-                <div>
-                    {this.buildCards()}
-                </div>
+                this.buildCards()
             );
         }
     }

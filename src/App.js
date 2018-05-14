@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Icon, Dropdown, Checkbox, Header } from 'semantic-ui-react';
+import { Button, Icon, Dropdown, Checkbox, Header, Card, Grid} from 'semantic-ui-react';
 import './App.css';
 
 import ChosenUser from './ChosenUser';
@@ -136,13 +136,13 @@ class App extends Component {
           </div>
         </div>
         <div className="one column row">
-          <div className="column row">
+          <div className="column">
             <Header as='h2' color='blue'>Groups!</Header>
-            <div className="three column row">
               <div className="ui segment">
-                <ChosenGroups groups={this.state.chosenGroups} groupSize={this.state.groupSize} buildGroups={this.state.buildGroups}></ChosenGroups>
+                <Grid>
+                    <ChosenGroups groups={this.state.chosenGroups} groupSize={this.state.groupSize} buildGroups={this.state.buildGroups}></ChosenGroups>
+                </Grid>
               </div>
-            </div>
           </div>
         </div>
       </div>

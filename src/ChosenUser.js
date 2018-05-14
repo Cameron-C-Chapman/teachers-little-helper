@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card } from 'semantic-ui-react';
+import { Card, Header, Image } from 'semantic-ui-react';
 
 class ChosenUser extends Component {
     constructor(props) {
@@ -48,19 +48,35 @@ class ChosenUser extends Component {
                 }
             }
         }
-
         return userImage;
     }
+    buildCard = () => {
+        let cardDetails
+        if(this.props.isGrouped){
 
-    render(props) {
-        if (this.props.user) {
-            return(
-                <Card centered
+            return <Card centered raised color='blue'>
+                        <Card.Content>
+                            <Card.Header>{this.getUserName()}</Card.Header>
+                            <Image size='mini' className='group-member-card' src={this.getUserImage()}></Image>
+                        </Card.Content>
+                    </Card>
+        } else {
+            let singleCard = 
+                <Card centered raised
                     header={this.getUserName()}
                     image={this.getUserImage()}
                     color='blue'
                     className='chosen-user-card'>
                 </Card>
+            cardDetails = singleCard;
+        }
+        return cardDetails
+    }
+
+    render(props) {
+        if (this.props.user) {
+            return(
+                this.buildCard()
             );
         }
     }
