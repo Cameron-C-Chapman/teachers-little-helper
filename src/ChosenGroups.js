@@ -26,7 +26,6 @@ class ChosenGroups extends Component {
                     group.push(groupMember);
                 }
                let cardGroup =
-            //    <div className='column'>
                     <Card.Group >
                         <Card>
                             <Card.Content>
@@ -41,7 +40,6 @@ class ChosenGroups extends Component {
                             </Card.Content>
                         </Card>
                     </Card.Group>
-                // </div>
                 cards.push(cardGroup)
             }
         }

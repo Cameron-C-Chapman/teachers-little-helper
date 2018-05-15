@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Icon, Dropdown, Checkbox, Header, Card, Grid} from 'semantic-ui-react';
+import { Button, Icon, Dropdown, Checkbox, Header, Card, Grid, Segment} from 'semantic-ui-react';
 import './App.css';
 
 import ChosenUser from './ChosenUser';
@@ -103,49 +103,48 @@ class App extends Component {
       })})
     }
     // this selects a single student to display on the card. 
-    // do we build groups visually -- Later we should slack the selected students in direct group messages
     let randomNum = Math.floor(Math.random() * this.state.users.length);
     this.setState({chosenUser: this.state.users[randomNum]});
   }
 
   render() {
     return (
-      <div className="App ui grid">
-        <div className="two column row">
-          <div className="column">
-            <div className="ui segment">
+      <Grid textAlign='center'>
+        <Grid.Row columns={2}>
+          <Grid.Column>
+            <Segment>
               <Header as='h3' color='blue'>Pick a Random Student!</Header>
               <Button color="blue" onClick={this.chooseNewUser}>Feeling Lucky &nbsp; <Icon name='wizard'></Icon></Button>
               <ChosenUser user={this.state.chosenUser} isGrouped={this.state.buildGroups}></ChosenUser>
-            </div>  
-          </div>
-          <div className="column">
-            <div className="ui segment">
+            </Segment>
+          </Grid.Column>
+          <Grid.Column>
+            <Segment>
               <Header as='h3' color='blue'>Select Students by Slack Cannel</Header>
               <Dropdown placeholder='Channels' fluid multiple selection options={this.state.channels} />
-            </div>  
-            <div className="ui segment">
+            </Segment>
+            <Segment>
               <Header as='h3' color='blue'>Include Admins</Header>
               <Checkbox toggle label="Allow Admin" onChange={this.toggleAdmin}/>
-            </div>
-            <div className="ui segment">
+            </Segment>
+            <Segment>
               <Header as='h3' color='blue'>Group Options</Header>
               <Checkbox toggle label="Build Groups!" onChange={this.buildGroups}/>
               <Dropdown placeholder='Group Size' fluid selection options={this.state.groupOptions} value={this.value} onChange={(e, {value}) => this.setGroupSize(value)}/>
-            </div>
-          </div>
-        </div>
-        <div className="one column row">
-          <div className="column">
+            </Segment>
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Column>
             <Header as='h2' color='blue'>Groups!</Header>
-              <div className="ui segment">
+              <Segment>
                 <Grid>
                     <ChosenGroups groups={this.state.chosenGroups} groupSize={this.state.groupSize} buildGroups={this.state.buildGroups}></ChosenGroups>
                 </Grid>
-              </div>
-          </div>
-        </div>
-      </div>
+              </Segment>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     );
   }
 }
