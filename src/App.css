@@ -30,3 +30,11 @@
 .ui.fluid.dropdown {
   margin-top: 10px;
 }
+
+.ui.card:first-child {
+  margin: 1em 0;
+}
+
+.ui.card:last-child {
+  margin-bottom: 1em;
+}

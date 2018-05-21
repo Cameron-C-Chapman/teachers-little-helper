@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { Card, Header } from 'semantic-ui-react';
+import { Card, Segment, Header, Feed } from 'semantic-ui-react';
 
 import ChosenUser from './ChosenUser'
 
 class ChosenGroups extends Component {
     constructor(props) {
         super(props);
-        // console.log(this.props);
         this.state = {
             groups: this.props.groups,
             groupSize: this.props.groupSize,
@@ -25,22 +24,16 @@ class ChosenGroups extends Component {
                     let groupMember = <ChosenUser user={groups[i][j]} isGrouped={this.props.buildGroups}></ChosenUser>;
                     group.push(groupMember);
                 }
-               let cardGroup =
-                    <Card.Group >
-                        <Card>
-                            <Card.Content>
-                                <Card.Header>
-                                Group {i+1}
-                                </Card.Header>
-                                <Card.Group >
-                                    <Card color='violet' centered raised>
-                                        {group}
-                                    </Card>
-                                </Card.Group>
-                            </Card.Content>
-                        </Card>
-                    </Card.Group>
-                cards.push(cardGroup)
+
+                let groupFeed =
+                    <Card raised color='violet'>
+                        <Card.Content>
+                            <Feed>
+                                {group}
+                            </Feed>
+                        </Card.Content>
+                    </Card>
+                cards.push(groupFeed)
             }
         }
         return cards

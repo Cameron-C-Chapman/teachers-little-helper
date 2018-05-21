@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Icon, Dropdown, Checkbox, Header, Card, Grid, Segment} from 'semantic-ui-react';
+import { Button, Icon, Dropdown, Checkbox, Header, Grid, Segment, Divider} from 'semantic-ui-react';
 import './App.css';
 
 import ChosenUser from './ChosenUser';
@@ -18,6 +18,7 @@ class App extends Component {
       chosenUser: {},
       allowAdmin: false,
       buildGroups: false,
+      displaySingleCard: true,
       groupSize: 2,
       chosenGroups: {},
       groupOptions: [{
@@ -56,22 +57,23 @@ class App extends Component {
           value: channel.id,
           text: channel.name
         }
-        return channels.push(newChannel);
+       return channels.push(newChannel);
       });
       return this.setState({channels: channels});
     });
   }
   toggleAdmin = () => {
-    this.setState({
+    return this.setState({
       allowAdmin: !this.state.allowAdmin
     })
   }
   setGroupSize = (value) => {
-    return this.setState({groupSize: parseInt(value)})
+    return this.setState({groupSize: parseInt(value, 16)})
   }
   buildGroups = (value) => {
     this.setState({
       buildGroups: !this.state.buildGroups,
+      displaySingleCard : !this.state.displaySingleCard
     })
   }
   chooseNewUser = () => {
@@ -115,7 +117,7 @@ class App extends Component {
             <Segment>
               <Header as='h3' color='blue'>Pick a Random Student!</Header>
               <Button color="blue" onClick={this.chooseNewUser}>Feeling Lucky &nbsp; <Icon name='wizard'></Icon></Button>
-              <ChosenUser user={this.state.chosenUser} isGrouped={this.state.buildGroups}></ChosenUser>
+              <ChosenUser user={this.state.chosenUser} isGrouped={this.state.buildGroups} display={this.state.displaySingleCard}></ChosenUser>
             </Segment>
           </Grid.Column>
           <Grid.Column>
@@ -129,20 +131,27 @@ class App extends Component {
             </Segment>
             <Segment>
               <Header as='h3' color='blue'>Group Options</Header>
-              <Checkbox toggle label="Build Groups!" onChange={this.buildGroups}/>
+              <Checkbox toggle label="Build Groups!" onChange={this.buildGroups} onClick={this.toggleDisplay}/>
               <Dropdown placeholder='Group Size' fluid selection options={this.state.groupOptions} value={this.value} onChange={(e, {value}) => this.setGroupSize(value)}/>
             </Segment>
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
           <Grid.Column>
-            <Header as='h2' color='blue'>Groups!</Header>
-              <Segment>
-                <Grid>
+            <Segment>
+            <Divider horizontal><Header as='h2' color='blue'>Groups!</Header></Divider>
+              {/* <Segment> */}
+                <Grid textAlign='center'>
                     <ChosenGroups groups={this.state.chosenGroups} groupSize={this.state.groupSize} buildGroups={this.state.buildGroups}></ChosenGroups>
                 </Grid>
+              {/* </Segment> */}
               </Segment>
           </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+          <Segment>
+          <Divider horizontal>Made in the pursuit of <Icon name='idea' size='massive'/></Divider>
+          </Segment>
         </Grid.Row>
       </Grid>
     );

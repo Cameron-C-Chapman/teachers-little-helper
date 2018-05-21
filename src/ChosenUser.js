@@ -1,28 +1,27 @@
 import React, { Component } from 'react';
-import { Card, Header, Image } from 'semantic-ui-react';
+import { Card, Image, Feed } from 'semantic-ui-react';
 
 class ChosenUser extends Component {
     constructor(props) {
         super(props);
-        console.log('ChosenUser.props', this.props);
+        // console.log('ChosenUser.props', this.props);
+        let imageSize = this.props.isGrouped ? 'mini' : 'large'
+        this.state = {
+            imageSize: imageSize
+        }
     }
 
     getUserName = () => {
         if (this.props.user && this.props.user.real_name) {
             return this.props.user.real_name;
         }
-        if (this.props.isGrouped){
-        }
-    }
-    singleOrGrouped = () =>{
-        return this.props.isGrouped;
     }
 
     getUserImage = () => {
-        // console.log(this.props.groupSize);
         let userImage;
         let user = this.props.user
         let grouped = this.props.isGrouped;
+
         if (user && user.profile) {
             if(grouped){
                 userImage = user.profile.image_48
@@ -50,29 +49,31 @@ class ChosenUser extends Component {
         }
         return userImage;
     }
+
     buildCard = () => {
-        let cardDetails
+        let cardContent
+        // Build a feed to show group memebers in a condensed manner
         if(this.props.isGrouped){
-
-            return <Card centered raised color='blue'>
-                        <Card.Content>
-                            <Card.Header>{this.getUserName()}</Card.Header>
-                            <Image size='mini' className='group-member-card' src={this.getUserImage()}></Image>
-                        </Card.Content>
-                    </Card>
+            console.log('our card content is grouped. YEET!');
+            cardContent =
+                <Feed.Event>
+                    <Feed.Label><Image className='group-member-card' src={this.getUserImage()}></Image></Feed.Label>
+                    <Feed.Content content={this.getUserName()}/>
+                </Feed.Event>
         } else {
-            let singleCard = 
-                <Card centered raised
-                    header={this.getUserName()}
-                    image={this.getUserImage()}
-                    color='blue'
-                    className='chosen-user-card'>
+             // returns a single user
+            cardContent =
+                <Card centered raised color='blue'>
+                    <Card.Content>
+                        <Card.Header>{this.getUserName()}</Card.Header>
+                        <Image size={this.state.imageSize} className='group-member-card' src={this.getUserImage()}></Image>
+                    </Card.Content>
                 </Card>
-            cardDetails = singleCard;
         }
-        return cardDetails
+        return cardContent
+       
     }
-
+   
     render(props) {
         if (this.props.user) {
             return(
