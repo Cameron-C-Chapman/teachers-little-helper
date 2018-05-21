@@ -45,7 +45,7 @@ class App extends Component {
   componentDidMount() {
     slackInstance.getUsers().then((response) => {
       this.setState({users: response.members.filter((user) => {
-        return (user.is_bot === false && user.deleted === false);
+        return (user.is_bot === false && user.deleted === false && user.is_admin === false);
       })});
     });
 
@@ -62,16 +62,11 @@ class App extends Component {
       return this.setState({channels: channels});
     });
   }
-  toggleAdmin = () => {
-    return this.setState({
-      allowAdmin: !this.state.allowAdmin
-    })
-  }
   setGroupSize = (value) => {
     return this.setState({groupSize: parseInt(value, 16)})
   }
   buildGroups = (value) => {
-    this.setState({
+   return this.setState({
       buildGroups: !this.state.buildGroups,
       displaySingleCard : !this.state.displaySingleCard
     })
@@ -98,15 +93,12 @@ class App extends Component {
         tempArray = studentPool.slice(i,i+chunk);
         classGroups.push(tempArray);
       }
-      this.setState({chosenGroups: classGroups})
-    } else if (!this.state.allowAdmin) {
-      this.setState({users: this.state.users.filter((user) => {
-        return (user.is_admin === false && user.is_bot === false);
-      })})
+      return this.setState({chosenGroups: classGroups})
+    } else if (!this.state.buildGroups){
+      // this selects a single student to display on the card. 
+      let randomNum = Math.floor(Math.random() * this.state.users.length);
+      return this.setState({chosenUser: this.state.users[randomNum]});
     }
-    // this selects a single student to display on the card. 
-    let randomNum = Math.floor(Math.random() * this.state.users.length);
-    this.setState({chosenUser: this.state.users[randomNum]});
   }
 
   render() {
@@ -126,10 +118,6 @@ class App extends Component {
               <Dropdown placeholder='Channels' fluid multiple selection options={this.state.channels} />
             </Segment>
             <Segment>
-              <Header as='h3' color='blue'>Include Admins</Header>
-              <Checkbox toggle label="Allow Admin" onChange={this.toggleAdmin}/>
-            </Segment>
-            <Segment>
               <Header as='h3' color='blue'>Group Options</Header>
               <Checkbox toggle label="Build Groups!" onChange={this.buildGroups} onClick={this.toggleDisplay}/>
               <Dropdown placeholder='Group Size' fluid selection options={this.state.groupOptions} value={this.value} onChange={(e, {value}) => this.setGroupSize(value)}/>
@@ -139,18 +127,16 @@ class App extends Component {
         <Grid.Row>
           <Grid.Column>
             <Segment>
-            <Divider horizontal><Header as='h2' color='blue'>Groups!</Header></Divider>
-              {/* <Segment> */}
-                <Grid textAlign='center'>
-                    <ChosenGroups groups={this.state.chosenGroups} groupSize={this.state.groupSize} buildGroups={this.state.buildGroups}></ChosenGroups>
-                </Grid>
-              {/* </Segment> */}
-              </Segment>
+              <Divider horizontal><Header as='h2' color='blue'>Groups!</Header></Divider>
+              <Grid textAlign='center'>
+                  <ChosenGroups groups={this.state.chosenGroups} groupSize={this.state.groupSize} buildGroups={this.state.buildGroups}></ChosenGroups>
+              </Grid>
+            </Segment>
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
           <Segment>
-          <Divider horizontal>Made in the pursuit of <Icon name='idea' size='massive'/></Divider>
+            <Divider horizontal>Made in the pursuit of <Icon name='idea'/></Divider>
           </Segment>
         </Grid.Row>
       </Grid>
