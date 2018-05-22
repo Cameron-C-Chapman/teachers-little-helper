@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-}
+} /* no longer using */
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
@@ -25,4 +25,16 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.ui.fluid.dropdown {
+  margin-top: 10px;
+}
+
+.ui.card:first-child {
+  margin: 1em 0;
+}
+
+.ui.card:last-child {
+  margin-bottom: 1em;
 }

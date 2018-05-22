@@ -10,6 +10,10 @@ class SlackInstance {
         return this.instance.users.list();
     }
 
+    getChannels() {
+        return this.instance.channels.list();
+    }
+
 }
 
 export default SlackInstance;
