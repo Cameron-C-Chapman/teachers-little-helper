@@ -18,8 +18,7 @@ class App extends Component {
       chosenUser: {},
       allowAdmin: false,
       buildGroups: false,
-      displaySingleCard: true,
-      groupSize: 2,
+      groupSize: 1,
       chosenGroups: {},
       groupOptions: [{
         key: 'two',
@@ -68,7 +67,7 @@ class App extends Component {
   buildGroups = (value) => {
    return this.setState({
       buildGroups: !this.state.buildGroups,
-      displaySingleCard : !this.state.displaySingleCard
+      chosenUser:{}
     })
   }
   chooseNewUser = () => {
@@ -93,7 +92,10 @@ class App extends Component {
         tempArray = studentPool.slice(i,i+chunk);
         classGroups.push(tempArray);
       }
-      return this.setState({chosenGroups: classGroups})
+      return this.setState({
+        chosenGroups: classGroups,
+        chosenUser: {}
+      })
     } else if (!this.state.buildGroups){
       // this selects a single student to display on the card. 
       let randomNum = Math.floor(Math.random() * this.state.users.length);
@@ -109,7 +111,7 @@ class App extends Component {
             <Segment>
               <Header as='h3' color='blue'>Pick a Random Student!</Header>
               <Button color="blue" onClick={this.chooseNewUser}>Feeling Lucky &nbsp; <Icon name='wizard'></Icon></Button>
-              <ChosenUser user={this.state.chosenUser} isGrouped={this.state.buildGroups} display={this.state.displaySingleCard}></ChosenUser>
+              <ChosenUser user={this.state.chosenUser} isGrouped={this.state.buildGroups}></ChosenUser>
             </Segment>
           </Grid.Column>
           <Grid.Column>

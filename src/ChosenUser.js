@@ -4,11 +4,6 @@ import { Card, Image, Feed } from 'semantic-ui-react';
 class ChosenUser extends Component {
     constructor(props) {
         super(props);
-        // console.log('ChosenUser.props', this.props);
-        let imageSize = this.props.isGrouped ? 'mini' : 'large'
-        this.state = {
-            imageSize: imageSize
-        }
     }
 
     getUserName = () => {
@@ -54,24 +49,22 @@ class ChosenUser extends Component {
         let cardContent
         // Build a feed to show group memebers in a condensed manner
         if(this.props.isGrouped){
-            console.log('our card content is grouped. YEET!');
             cardContent =
                 <Feed.Event>
                     <Feed.Label><Image className='group-member-card' src={this.getUserImage()}></Image></Feed.Label>
                     <Feed.Content content={this.getUserName()}/>
                 </Feed.Event>
-        } else {
+        } else if (!this.props.isGrouped){
              // returns a single user
             cardContent =
                 <Card centered raised color='blue'>
                     <Card.Content>
                         <Card.Header>{this.getUserName()}</Card.Header>
-                        <Image size={this.state.imageSize} className='group-member-card' src={this.getUserImage()}></Image>
+                        <Image className='group-member-card' src={this.getUserImage()}></Image>
                     </Card.Content>
                 </Card>
         }
         return cardContent
-       
     }
    
     render(props) {

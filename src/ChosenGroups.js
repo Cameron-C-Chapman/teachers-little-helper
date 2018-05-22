@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Segment, Header, Feed } from 'semantic-ui-react';
+import { Card, Feed } from 'semantic-ui-react';
 
 import ChosenUser from './ChosenUser'
 
@@ -16,12 +16,11 @@ class ChosenGroups extends Component {
     buildCards = () => {
         let groups = this.props.groups
         let cards = [];
-        
-        if  (groups.length >=1){
+        if  (this.props.buildGroups && groups.length >=1){
             for (let i=0; i<groups.length; i++){
                 let group = [];
                 for(let j=0; j<groups[i].length; j++){ 
-                    let groupMember = <ChosenUser user={groups[i][j]} isGrouped={this.props.buildGroups}></ChosenUser>;
+                    let groupMember = <ChosenUser user={groups[i][j]} isGrouped={this.props.buildGroups} groupSize={this.props.groupSize}></ChosenUser>;
                     group.push(groupMember);
                 }
 
