@@ -122,7 +122,7 @@ class App extends Component {
             <Segment>
               <Header as='h3' color='blue'>Group Options</Header>
               <Checkbox toggle label="Build Groups!" onChange={this.buildGroups} onClick={this.toggleDisplay}/>
-              <Dropdown placeholder='Group Size' fluid selection options={this.state.groupOptions} value={this.value} onChange={(e, {value}) => this.setGroupSize(value)}/>
+              <Dropdown placeholder='Group Size' fluid selection options={this.state.groupOptions} onChange={(e, {value}) => this.setGroupSize(value)}/>
             </Segment>
           </Grid.Column>
         </Grid.Row>
@@ -138,7 +138,7 @@ class App extends Component {
         </Grid.Row>
         <Grid.Row>
           <Segment>
-            <Divider horizontal>Made in the pursuit of <Icon name='idea'/></Divider>
+            <Divider horizontal>Made in the pursuit of <Icon name='world'/> domination</Divider>
           </Segment>
         </Grid.Row>
       </Grid>

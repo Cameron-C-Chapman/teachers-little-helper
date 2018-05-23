@@ -49,20 +49,22 @@ class ChosenUser extends Component {
         let cardContent
         // Build a feed to show group memebers in a condensed manner
         if(this.props.isGrouped){
-            cardContent =
+            cardContent = (
                 <Feed.Event>
                     <Feed.Label><Image className='group-member-card' src={this.getUserImage()}></Image></Feed.Label>
                     <Feed.Content content={this.getUserName()}/>
                 </Feed.Event>
+            )
         } else if (!this.props.isGrouped){
              // returns a single user
-            cardContent =
+            cardContent = (
                 <Card centered raised color='blue'>
                     <Card.Content>
                         <Card.Header>{this.getUserName()}</Card.Header>
                         <Image className='group-member-card' src={this.getUserImage()}></Image>
                     </Card.Content>
                 </Card>
+            )
         }
         return cardContent
     }

@@ -24,7 +24,7 @@ class ChosenGroups extends Component {
                     group.push(groupMember);
                 }
 
-                let groupFeed =
+                let groupFeed =(
                     <Card raised color='violet'>
                         <Card.Content>
                             <Feed>
@@ -32,6 +32,7 @@ class ChosenGroups extends Component {
                             </Feed>
                         </Card.Content>
                     </Card>
+                )
                 cards.push(groupFeed)
             }
         }
