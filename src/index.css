@@ -1,5 +1,11 @@
 body {
   margin: 0;
-  padding: 0;
+  padding: 10px;
   font-family: sans-serif;
+}
+
+.chosen-user-card > img {
+  padding: 0.5em !important;
+  min-height: 192px;
+  min-width: 192px;
 }
