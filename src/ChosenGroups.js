@@ -20,7 +20,7 @@ class ChosenGroups extends Component {
             for (let i=0; i<groups.length; i++){
                 let group = [];
                 for(let j=0; j<groups[i].length; j++){ 
-                    let groupMember = <ChosenUser user={groups[i][j]} isGrouped={this.props.buildGroups} groupSize={this.props.groupSize}></ChosenUser>;
+                    let groupMember = <ChosenUser key={ i+j } user={ groups[i][j] } isGrouped={ this.props.buildGroups } groupSize={ this.props.groupSize } selectedChannel={ this.props.selectedChannel }></ChosenUser>;
                     group.push(groupMember);
                 }
 
@@ -28,7 +28,7 @@ class ChosenGroups extends Component {
                     <Card raised color='violet'>
                         <Card.Content>
                             <Feed>
-                                {group}
+                                { group }
                             </Feed>
                         </Card.Content>
                     </Card>
