@@ -18,8 +18,7 @@ You will need a [Slack API Token](https://api.slack.com/custom-integrations/lega
 
 #### Here is a nice gif for your viewing pleasure
 
-![app demo gif]
-(/additional_assets/Helper.gif)  
+![app demo gif](/additional_assets/Helper.gif)  
 
 ##### Future Features
 - [x] Narrow user base by slack channel
