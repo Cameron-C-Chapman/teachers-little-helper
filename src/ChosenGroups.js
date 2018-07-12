@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { Card, Feed } from 'semantic-ui-react';
-
-import ChosenUser from './ChosenUser'
+import ChosenUser from './ChosenUser';
 
 class ChosenGroups extends Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
             groups: this.props.groups,
             groupSize: this.props.groupSize,
@@ -14,32 +13,33 @@ class ChosenGroups extends Component {
     }
 
     buildCards = () => {
-        let groups = this.props.groups
-        let cards = [];
-        if  (this.props.buildGroups && groups.length >=1){
-            for (let i=0; i<groups.length; i++){
-                let group = [];
-                for(let j=0; j<groups[i].length; j++){ 
-                    let groupMember = <ChosenUser key={ i+j } user={ groups[i][j] } isGrouped={ this.props.buildGroups } groupSize={ this.props.groupSize } selectedChannel={ this.props.selectedChannel }></ChosenUser>;
-                    group.push(groupMember);
-                }
+        let props = this.props
+        let cards = []
 
-                let groupFeed =(
-                    <Card raised color='violet'>
+        if  (props.buildGroups && props.groups.length >=1){
+            for (let i=0; i < props.groups.length; i++){
+
+                let chosenUser = props.groups[i].map((user) => 
+                    <ChosenUser key={ user.real_name } user={ user } isGrouped={ props.buildGroups } ></ChosenUser>
+                )
+
+                let groupUserFeed = (
+                    <Card key={ i.toString() } raised color='violet'>
+                        <Card.Header>Group {i}</Card.Header>
                         <Card.Content>
                             <Feed>
-                                { group }
+                                { chosenUser }
                             </Feed>
                         </Card.Content>
                     </Card>
                 )
-                cards.push(groupFeed)
+                cards.push(groupUserFeed)
             }
         }
         return cards
     }
 
-    render(props) {
+    render() {
         if (this.props.groups) {
             return(
                 this.buildCards()

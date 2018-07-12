@@ -38,3 +38,6 @@
 .ui.card:last-child {
   margin-bottom: 1em;
 }
+.ui.card .header {
+  font-weight: bold;
+}
