@@ -13,8 +13,8 @@ class ChosenGroups extends Component {
     }
 
     buildCards = () => {
-        let props = this.props
-        let cards = []
+        let props = this.props;
+        let cards = [];
 
         if  (props.buildGroups && props.groups.length >=1){
             for (let i=0; i < props.groups.length; i++){
@@ -23,8 +23,8 @@ class ChosenGroups extends Component {
                     <ChosenUser key={ user.real_name } user={ user } isGrouped={ props.buildGroups } ></ChosenUser>
                 )
 
-                let groupUserFeed = (
-                    <Card key={ i.toString() } raised color='violet'>
+                let groupUserFeed =
+                    <Card key={i.toString()} raised color="violet">
                         <Card.Header>Group {i}</Card.Header>
                         <Card.Content>
                             <Feed>
@@ -32,8 +32,8 @@ class ChosenGroups extends Component {
                             </Feed>
                         </Card.Content>
                     </Card>
-                )
-                cards.push(groupUserFeed)
+                
+                cards.push(groupUserFeed);
             }
         }
         return cards
