@@ -25,18 +25,20 @@ class ChosenGroups extends Component {
 
                 let groupUserFeed =
                     <Card key={i.toString()} raised color="violet">
-                        <Card.Header>Group {i}</Card.Header>
+                        <Card.Content>
+                            <Card.Header>Group {i}</Card.Header>
+                        </Card.Content>
                         <Card.Content>
                             <Feed>
                                 { chosenUser }
                             </Feed>
                         </Card.Content>
-                    </Card>
+                    </Card>;
                 
                 cards.push(groupUserFeed);
             }
         }
-        return cards
+        return cards;
     }
 
     render() {

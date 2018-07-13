@@ -1,6 +1,3 @@
-.App {
-  text-align: center;
-} /* no longer using */
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
@@ -39,5 +36,5 @@
   margin-bottom: 1em;
 }
 .ui.card .header {
-  font-weight: bold;
+  font-weight: 700;
 }

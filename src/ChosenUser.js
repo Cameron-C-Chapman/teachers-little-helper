@@ -51,7 +51,7 @@ class ChosenUser extends Component {
                 <Feed.Label><Image className='group-member-card' src={ this.getUserImage() }></Image></Feed.Label>
                 <Feed.Content content={ this.getUserName() }/>
             </Feed.Event>
-        )
+        );
     }
     buildSingleCard = () => {
         // returns a single user name and image
@@ -62,7 +62,7 @@ class ChosenUser extends Component {
                     <Image className='group-member-card' src={ this.getUserImage() }></Image>
                 </Card.Content>
             </Card>
-        )
+        );
     }
     
     render() {
