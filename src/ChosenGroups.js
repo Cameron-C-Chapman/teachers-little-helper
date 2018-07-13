@@ -4,7 +4,7 @@ import ChosenUser from './ChosenUser';
 
 class ChosenGroups extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             groups: this.props.groups,
             groupSize: this.props.groupSize,
