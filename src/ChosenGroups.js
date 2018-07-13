@@ -16,11 +16,11 @@ class ChosenGroups extends Component {
         let props = this.props;
         let cards = [];
 
-        if  (props.buildGroups && props.groups.length >=1){
+        if (props.buildGroups && props.groups.length >=1){
             for (let i=0; i < props.groups.length; i++){
 
                 let chosenUser = props.groups[i].map((user) => 
-                    <ChosenUser key={ user.real_name } user={ user } isGrouped={ props.buildGroups } ></ChosenUser>
+                    <ChosenUser key={ user.real_name } user={ user } isGrouped={ props.buildGroups }></ChosenUser>
                 )
 
                 let groupUserFeed =

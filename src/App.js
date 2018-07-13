@@ -72,7 +72,7 @@ class App extends Component {
     return this.setState({
       selectedChannel: channelKey,
       useSpecificChannel: !this.state.useSpecificChannel
-     }, ()=>this.getChannelMembers());
+     }, () => this.getChannelMembers());
   }
   getChannelMembers = () => {
     let channelMembers = []
